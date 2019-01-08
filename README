@@ -1,0 +1,6 @@
+This is Debug Module.
+
+Use STM32F103c8t6 Microcontroller board
+Use ST7735 spi Display 128x160
+
+You can input 2 serial UART
