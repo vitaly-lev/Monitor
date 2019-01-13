@@ -1,0 +1,4 @@
+Display (for example)
+https://ru.aliexpress.com/item/1-8/32880698004.html?spm=a2g0v.search0104.3.22.41c844e1TKxKgQ&transAbTest=ae803_5&ws_ab_test=searchweb0_0%2Csearchweb201602_5_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_431_10307_537_536%2Csearchweb201603_51%2CppcSwitch_0&algo_pvid=78588026-f4d2-4beb-be65-534e22b0afc6&algo_expid=78588026-f4d2-4beb-be65-534e22b0afc6-3
+Controller (for Example)
+https://ru.aliexpress.com/item/Free-Shipping-STM32F103C8T6-ARM-STM32-Minimum-System-Development-Board-Module-Forarduino/32525208361.html?spm=a2g0v.search0104.3.1.3cac7b819Am0WN&ws_ab_test=searchweb0_0,searchweb201602_5_10065_10068_319_10059_10884_317_10887_10696_100031_321_322_10084_453_10083_454_10103_10618_431_10307_537_536,searchweb201603_51,ppcSwitch_0&algo_expid=d9c32eee-a63b-4429-941f-5d67bf727014-0&algo_pvid=d9c32eee-a63b-4429-941f-5d67bf727014&transAbTest=ae803_5

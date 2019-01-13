@@ -1,3 +1,21 @@
+/*
+	<C> <Lion>
+
+	monitor.c
+
+	Programm for Debug Monitor
+
+Input:
+				UART1 - 115200 8n1
+				UART2 - 115200 8n1
+Oupput:
+				Display 128x160
+
+	2019 01 11	v1.0 
+
+
+*/
+
 #include "stm32f1xx_hal.h"
 #include <string.h>
 #include "monitor.h"
@@ -52,13 +70,6 @@ void monitor(UART_HandleTypeDef *huart)
 {
 int8_t i=0,j=0,k=0;
 
-	
-/*
-	d[0].line[0] = '1';
-	d[0].line[1] = '>';
-*/	
-	
-		
 	if (huart->Instance == USART1)
 	{
 	HAL_UART_Receive_IT(&huart1,(uint8_t *) &rxbyte1, 1);
@@ -110,7 +121,7 @@ int8_t i=0,j=0,k=0;
 				ST7735_WriteString(uart1_x_start, uart1_y_start-font_h*(i+1), d1[i+1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 				
 			}
-			
+	
 /*	
 int z;			
 				for (z=0; z<6; z++)
@@ -191,18 +202,17 @@ int z;
 	
 	if (huart->Instance == USART2)
 	{
-	HAL_UART_Receive_IT(&huart1,(uint8_t *) &rxbyte2, 1);
+	HAL_UART_Receive_IT(&huart2,(uint8_t *) &rxbyte2, 1);
 	txstring2[0] = rxbyte2;
 		
-			
 		if (rxbyte2 != 0x0A  && rxbyte2 != 0x0D && d2[0].num_char < num_char_in_line)
 		{
-			d2[0].line[uart1_x] = rxbyte2;				//write symbol to display memory
+			d2[0].line[uart2_x] = rxbyte2;				//write symbol to display memory
 			d2[0].num_char++;										//write number of char in line to display memory
 			
-			ST7735_WriteString(uart1_x*(font_w), uart1_y_start, txstring1, Font_7x10, ST7735_GREEN, ST7735_BLACK);
-			uart1_x++;
-			d2[0].line[uart1_x] = 0;							//write symbol "end of line" to display memory
+			ST7735_WriteString(uart2_x*(font_w), uart2_y_start, txstring2, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+			uart2_x++;
+			d2[0].line[uart2_x] = 0;							//write symbol "end of line" to display memory
 			return;
 		}
 		else
@@ -231,13 +241,13 @@ int z;
 					}
 					d2[i].line[k] = 0;
 			
-					ST7735_WriteString(uart1_x_start, uart1_y_start-font_h*(i+1), d2[i].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+					ST7735_WriteString(uart2_x_start, uart2_y_start-font_h*(i+1), d2[i].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 				}
 				
 				d2[i+1].num_char = d2[i].num_char;
 				d2[i+1].line[j] = 0;
 				
-				ST7735_WriteString(uart1_x_start, uart1_y_start-font_h*(i+1), d2[i+1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+				ST7735_WriteString(uart2_x_start, uart2_y_start-font_h*(i+1), d2[i+1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 				
 			}
 			
@@ -267,7 +277,7 @@ int z;
 				d2[1].line[j] = 0;
 				/*d2[0].num_char = 0;*/
 				
-				ST7735_WriteString(uart1_x_start, uart1_y_start-font_h, d2[1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+				ST7735_WriteString(uart2_x_start, uart2_y_start-font_h, d2[1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 
 			}
 			else
@@ -282,36 +292,36 @@ int z;
 					d2[1].line[k] = ' ';
 				}
 				d2[1].line[k] = 0;
-				ST7735_WriteString(uart1_x_start, uart1_y_start-font_h, d2[1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+				ST7735_WriteString(uart2_x_start, uart2_y_start-font_h, d2[1].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 				d2[1].num_char = d2[0].num_char;
 			}
 			
-			ST7735_WriteString(uart1_x_start, uart1_y_start, n_string, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+			ST7735_WriteString(uart2_x_start, uart2_y_start, n_string, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 			
 			if (d2[0].num_char < num_char_in_line)
 			{
 				for (i=0; i<num_char_in_line; i++)
 					d2[0].line[i] = 0;
 				
-				uart1_x = uart1_x_char_start;															//x start position of line
+				uart2_x = uart2_x_char_start;															//x start position of line
 				d2[0].num_char = 0;
 			}
 			else
 			{
 				if (rxbyte2 != 0x0A && rxbyte2 != 0x0D)
 				{
-					d2[0].line[0] = rxbyte1;
+					d2[0].line[0] = rxbyte2;
 					d2[0].line[1] = 0;
-					ST7735_WriteString(uart1_x_start, uart1_y_start, d2[0].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+					ST7735_WriteString(uart2_x_start, uart2_y_start, d2[0].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
 					d2[0].num_char = 1;
-					uart1_x = uart1_x_char_start + 1;
+					uart2_x = uart2_x_char_start + 1;
 				}
 				else
 				{
 					d2[0].line[0] = 0;
 					d2[0].num_char = 0;
-					ST7735_WriteString(uart1_x_start, uart1_y_start, d2[0].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
-					uart1_x = uart1_x_char_start;
+					ST7735_WriteString(uart2_x_start, uart2_y_start, d2[0].line, Font_7x10, ST7735_GREEN, ST7735_BLACK);
+					uart2_x = uart2_x_char_start;
 				}
 			}
 		}

@@ -213,6 +213,14 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+		
+		
+		// See stm32xx_it.c
+		// USART1_IRQHandler
+		// USART2_IRQHandler
+		//
+		// after receive from UART started, waiting for UART Interrupt. And see program logick in monitor.c
+		// Program is full reentrant program for UART1 & UART2
 
     /* USER CODE BEGIN 3 */
   }
