@@ -1,0 +1,10 @@
+#include "monitor.h"
+#include "..\st7735\7735.h"
+
+
+
+void monitor(void)
+{
+	ST7735_Init();
+	
+}

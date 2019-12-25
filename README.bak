@@ -1,0 +1,23 @@
+	<C> <Lion>
+
+	monitor.c
+
+	Programm for Debug Monitor
+
+Input:
+				UART1 - 115200 8n1
+				UART2 - 115200 8n1
+Oupput:
+				Display 128x160
+
+	2019 01 11	v1.0 
+
+
+This is Debug Module.
+
+Use STM32F103c8t6 Microcontroller board
+Use ST7735 spi Display 128x160
+
+You can input 2 serial UART to your Project.
+Write what you need to be debug to Serial1 or Serial 2.
+See result on Display.

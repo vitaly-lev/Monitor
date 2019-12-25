@@ -3,7 +3,7 @@
 
 	monitor.c
 
-	Programm for Debug Monitor
+	Programm for Debug Monitor 
 
 Input:
 				UART1 - 115200 8n1
